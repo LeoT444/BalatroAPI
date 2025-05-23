@@ -17,5 +17,5 @@ const Naipe = db.sequelize.define(
   },
   { freezeTableName: true }
 );
-Naipe.sync({ force: true });
+//Naipe.sync({ force: true });
 module.exports = Naipe;

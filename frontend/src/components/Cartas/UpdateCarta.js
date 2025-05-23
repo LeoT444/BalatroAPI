@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 function UpdateCarta() {
-    const { id } = useParams();
+    const { id_carta } = useParams();
     const [carta, setCarta] = useState({
         numero: "",
         pontuacao: 0,
@@ -16,17 +16,17 @@ function UpdateCarta() {
         }));
     };
     useEffect(() => {
-        axios.get("http://localhost:8081/carta/" + id)
+        axios.get("http://localhost:8081/carta/" + id_carta)
             .then(res => {
                 console.log(res);
                 setCarta(res.data);
             })
             .catch(err => console.log(err))
-    }, [id]);
+    }, [id_carta]);
     const handleClick = async (e) => {
         e.preventDefault();
         try {
-            await axios.put(`http://localhost:8081/carta/${id}`,
+            await axios.put(`http://localhost:8081/carta/${id_carta}`,
                 carta);
             navigate("/carta");
         } catch (err) {

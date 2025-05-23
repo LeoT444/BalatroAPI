@@ -4,13 +4,34 @@ import { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 const ListCarta = () => {
+
+    const [naipes, setNaipes] = useState([]);
+    //Listar Naipe
+    useEffect(() => {
+        const fetchAllNaipes = async () => {
+            try {
+                const res = await
+                    axios.get("http://localhost:8081/naipe");
+                setNaipes(res.data);
+            } catch (err) {
+                console.log(err);
+            }
+        };
+        fetchAllNaipes();
+    }, []);
+
+    const getNaipeNameByFKId = (id) => {
+        const naipe = naipes.find((naipe) => naipe.id_naipe === id);
+        return naipe ? naipe.nome : "Pedra";
+    }
+
     const [cartas, setCartas] = useState([]);
     //Listar Cartas
     useEffect(() => {
         const fetchAllCartas = async () => {
             try {
                 const res = await
-                    axios.get("http://localhost:8081/carta");
+                    axios.get("http://localhost:8081/carta/");
                 setCartas(res.data);
             } catch (err) {
                 console.log(err);
@@ -53,7 +74,7 @@ const ListCarta = () => {
                                         <td>{carta.id_carta}</td>
                                         <td>{carta.numero} </td>
                                         <td>{carta.pontuacao} </td>
-                                        <td>{carta.fk_naipe.nome} </td>
+                                        <td>{getNaipeNameByFKId(carta.fk_naipe)} </td>
                                         {/* <td>{carta.fk_naipe.nome} </td> */}
                                         {/* <td>{carta.fk_naipe.cor} </td> */}
                                         {/* <td>{carta.fk_naipe.createdAt} </td> */}

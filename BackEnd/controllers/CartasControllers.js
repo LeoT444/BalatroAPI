@@ -9,10 +9,9 @@ router.get("/", async (req, res) => {
 });
 //Cadastra Carta (POST)
 router.post("/", async (req, res) => {
-  const { placa } = req.body;
-  const { ano } = req.body;
-  const { mensalidade } = req.body;
-  const { fk_proprietario } = req.body;
+  const { numero } = req.body;
+  const { pontuacao } = req.body;
+  const { fk_naipe } = req.body;
   const newEdit = await Carta.create({
     numero,
     pontuacao,

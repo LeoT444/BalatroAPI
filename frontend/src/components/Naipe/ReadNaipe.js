@@ -17,7 +17,7 @@ const ReadNaipe = () => {
         <div className="container">
             <div className='row'>
                 <div className='col-md-12'>
-                    <h1>Detalhes do Proprietário</h1>
+                    <h1>Detalhes do Naipe</h1>
                     <table className="table">
                         <thead>
                             <tr>

@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 function UpdateNaipe() {
-    const { id } = useParams();
+    const { id_naipe } = useParams();
     const [naipe, setNaipe] = useState({
         nome: "",
         cor: "",
@@ -15,17 +15,17 @@ function UpdateNaipe() {
         }));
     };
     useEffect(() => {
-        axios.get("http://localhost:8081/naipe/" + id)
+        axios.get("http://localhost:8081/naipe/" + id_naipe)
             .then(res => {
                 console.log(res);
                 setNaipe(res.data);
             })
             .catch(err => console.log(err))
-    }, [id]);
+    }, [id_naipe]);
     const handleClick = async (e) => {
         e.preventDefault();
         try {
-            await axios.put(`http://localhost:8081/naipe/${id}`,
+            await axios.put(`http://localhost:8081/naipe/${id_naipe}`,
                 naipe);
             navigate("/naipe");
         } catch (err) {

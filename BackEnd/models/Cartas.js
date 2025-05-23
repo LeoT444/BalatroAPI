@@ -1,3 +1,5 @@
+
+
 const db = require("./db");
 const Carta = db.sequelize.define(
   "carta",
@@ -16,7 +18,7 @@ const Carta = db.sequelize.define(
     },
     fk_naipe: {
       type: db.Sequelize.INTEGER,
-      references: { model: "Naipe", key: "id_naipe" },
+      references: { model: "naipe", key: "id_naipe" },
       onDelete: "CASCADE",
       allowNull: false,
     },
